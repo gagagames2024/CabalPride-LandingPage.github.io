@@ -67,6 +67,25 @@
   .submission-meta,.submission-score{font-size:.84rem;}
 }
 
+  
+
+/* === Mobile reward list polish === */
+@media (max-width: 700px){
+  .reward-tabs{gap:10px;}
+  .reward-tabs button{min-height:42px;padding:9px 18px;font-size:.86rem;}
+  .reward-list{max-height:330px;gap:9px;padding-right:8px;overflow-y:auto;}
+  .reward-row{grid-template-columns:24px minmax(0,1fr);grid-template-areas:"rank name" "rank meta";align-items:start;gap:4px 10px;min-height:auto;padding:12px 12px;border-radius:10px;font-size:.86rem;}
+  .reward-row > span:first-child{grid-area:rank;display:grid;place-items:center;width:24px;height:24px;margin-top:1px;border-radius:50%;background:rgba(240,208,96,.12);font-size:.82rem;line-height:1;}
+  .reward-row strong{grid-area:name;white-space:normal;overflow:visible;text-overflow:clip;line-height:1.25;font-size:.88rem;}
+  .reward-row .duration{grid-area:meta;justify-self:start;color:#d9d4ff;font-size:.74rem;line-height:1.1;}
+  .reward-row .qty{grid-area:meta;justify-self:end;color:#d9d4ff;font-size:.74rem;line-height:1.1;}
+}
+@media (max-width: 390px){
+  .reward-row{grid-template-columns:22px minmax(0,1fr);gap:4px 8px;padding:11px 10px;}
+  .reward-row strong{font-size:.82rem;}
+  .reward-row .duration,.reward-row .qty{font-size:.7rem;}
+}
+
   </style>
 </head>
 <body>
