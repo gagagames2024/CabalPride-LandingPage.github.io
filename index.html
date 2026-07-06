@@ -286,8 +286,11 @@
         if(phases.length){CONFIG.phases=phases.slice(0,3).map(function(p){return {id:p.phase_id,name:'P'+p.phase_id+' | '+p.date_range,phaseName:p.phase_name,status:String(p.status||'').toUpperCase()==='ACTIVE'?'ACTIVE':'NOT STARTED',desc:p.short_description||'Short Description',url:p.detail_page_url||p.main_page_url||'#'};});}
         var approved=guilds.filter(function(g){return (g.guild_name||'') && String(g.status||'').toLowerCase()!=='hidden';}).sort(function(a,b){return num(b.final_score)-num(a.final_score);}).slice(0,5);
         if(approved.length){CONFIG.guilds=approved.map(function(g){return {name:g.guild_name,logo:g.guild_logo_url,color:g.platform==='Cabal PC'?'#35d07f':'#5ab4ff',score:num(g.final_score)};});}
-        var linktree=links.find(function(l){return String(l.link_type||'').toLowerCase()==='linktree';});
-        if(linktree&&linktree.url&&linktree.url.indexOf('PASTE_')!==0)CONFIG.linktreeUrl=linktree.url;
+        function pick(row,names){for(var i=0;i<names.length;i++){var wanted=String(names[i]).toLowerCase().replace(/[^a-z0-9]/g,'');for(var key in row){if(String(key).toLowerCase().replace(/[^a-z0-9]/g,'')===wanted)return row[key];}}return '';}
+        function validUrl(url){url=String(url||'').trim();if(!url||url.indexOf('PASTE_')===0||url==='#')return '';if(!/^https?:\/\//i.test(url)&&/^[a-z0-9.-]+\.[a-z]{2,}/i.test(url))url='https://'+url;return /^https?:\/\//i.test(url)?url:'';}
+        var linktree=links.find(function(l){var type=String(pick(l,['link_type','Link Type','type','Type','name','Name','label','Label'])||'').toLowerCase();return type.indexOf('linktree')>-1||type.indexOf('community')>-1||type.indexOf('group')>-1;})||links.find(function(l){return validUrl(pick(l,['url','URL','link','Link','link_url','Link URL','community_url','Community URL']));});
+        var communityUrl=linktree&&validUrl(pick(linktree,['url','URL','link','Link','link_url','Link URL','community_url','Community URL']));
+        if(communityUrl)CONFIG.linktreeUrl=communityUrl;
         renderHub();
       }).catch(function(){renderHub();});
     }
