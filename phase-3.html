@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CABAL PRIDE faction war hub for Procyon and Capella players." />
+  <title>Phase 3 - Grinding Pride | CABAL PRIDE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Exo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>:root{--bg:#040411;--bg2:#09091f;--panel:#10102a;--panel2:#171735;--gold:#d4a832;--gold2:#f0d060;--red:#ff5560;--red2:#c01820;--blue:#5ab4ff;--blue2:#1a4fbf;--text:#f3efff;--muted:#aaa6d6;--dim:#69659b;--line:rgba(255,255,255,.11);--goldline:rgba(212,168,50,.28);--radius:14px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:'Exo 2',Segoe UI,system-ui,sans-serif;background:radial-gradient(circle at 18% 0%,rgba(192,24,32,.24),transparent 32%),radial-gradient(circle at 84% 0%,rgba(26,79,191,.26),transparent 34%),linear-gradient(180deg,#030312,#07071c 42%,#050511);color:var(--text);line-height:1.5;overflow-x:hidden}a{color:inherit}img{max-width:100%;height:auto}.skip{position:fixed;top:10px;left:10px;z-index:50;background:var(--gold);color:#080812;padding:10px 12px;border-radius:8px;font-weight:800;transform:translateY(-140%)}.skip:focus{transform:none}.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:14px;height:58px;padding:0 18px;background:rgba(4,4,17,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(212,168,50,.18)}.brand{font-family:Cinzel,serif;font-weight:900;color:var(--gold2);letter-spacing:.08em;text-decoration:none}.nav{display:flex;gap:14px;font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.nav a{text-decoration:none}.hero{position:relative;min-height:clamp(330px,68svh,600px);display:grid;align-items:end;padding:92px 18px 22px;background:linear-gradient(110deg,rgba(85,0,18,.82),rgba(4,4,17,.62) 50%,rgba(0,28,112,.78)),url('campaign-banner.png') center/cover;overflow:hidden}.hero:after{content:'';position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,var(--bg));pointer-events:none}.hero-inner{position:relative;z-index:1;max-width:980px;margin:0 auto;width:100%;text-align:center}.hero-logo{width:min(78vw,520px);filter:drop-shadow(0 20px 34px rgba(0,0,0,.78));margin-bottom:10px}.eyebrow{display:inline-flex;gap:8px;align-items:center;margin-bottom:10px;color:var(--gold2);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase}.headline{margin:0;font-family:Cinzel,serif;font-size:clamp(1.35rem,6vw,3.25rem);line-height:1.05;letter-spacing:.04em}.sub{max-width:640px;margin:10px auto 0;color:var(--muted);font-size:.95rem}.container{max-width:1120px;margin:0 auto;padding:0 18px}.section{padding:24px 0}.priority{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}.priority span:first-child{font-size:.68rem;text-transform:uppercase;letter-spacing:.14em;color:var(--gold2);font-weight:800}.p0-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:14px;margin-top:-46px;position:relative;z-index:3}.score-card,.card,.activity-card,.phase-card,.performer-card{background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 48px rgba(0,0,0,.28)}.score-card{padding:16px;border-color:var(--goldline);background:linear-gradient(90deg,rgba(192,24,32,.22),rgba(212,168,50,.08),rgba(26,79,191,.25))}.score-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}.nation{text-align:center}.nation img{width:62px;aspect-ratio:1;object-fit:contain;display:block;margin:0 auto 7px}.nation strong{display:block;font-family:Cinzel,serif;font-size:clamp(2.1rem,10vw,4.2rem);line-height:1}.nation small{display:block;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.11em}.red{color:var(--red)}.blue{color:var(--blue)}.vs{font-family:Cinzel,serif;color:var(--gold2);font-size:1rem}.bar{height:10px;margin-top:14px;border-radius:999px;background:linear-gradient(90deg,var(--red) var(--p),var(--blue) var(--p));box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}.score-meta{display:flex;justify-content:space-between;margin-top:8px;color:var(--muted);font-size:.72rem}.activity-card{padding:16px}.status-pill{display:inline-flex;padding:5px 9px;border-radius:999px;background:rgba(74,222,128,.14);color:#86efac;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em}.activity-card h2{margin:10px 0 6px;font-family:Cinzel,serif;font-size:1.2rem}.activity-card p{margin:0;color:var(--muted);font-size:.86rem}.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 12px;border-radius:10px;background:var(--gold);color:#090912;text-decoration:none;font-weight:900;font-size:.82rem}.btn.secondary{background:rgba(212,168,50,.12);color:var(--gold2);border:1px solid var(--goldline)}.p1-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}.card{padding:15px}.card h2,.card h3{margin:0 0 10px;font-family:Cinzel,serif}.performer-list{display:grid;gap:8px}.performer-row{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px;border-radius:12px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07)}.rank{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:rgba(212,168,50,.16);color:var(--gold2);font-weight:900}.performer-row b{display:block;font-size:.86rem}.performer-row small,.phase-card small{color:var(--muted);font-size:.7rem}.score-num{color:var(--gold2);font-size:.76rem;font-weight:800}.reward-box{display:grid;gap:10px}.reward-box .big{padding:14px;border-radius:13px;background:linear-gradient(135deg,rgba(212,168,50,.18),rgba(255,255,255,.04));border:1px solid var(--goldline)}.timeline{display:grid;gap:8px}.phase-link{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:11px;border-radius:12px;text-decoration:none;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07)}.phase-dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:.78rem;background:rgba(255,255,255,.1)}.phase-dot.active{background:rgba(74,222,128,.18);color:#86efac}.phase-dot.done{background:rgba(212,168,50,.16);color:var(--gold2)}.phase-link b{display:block;font-size:.84rem}.tag{font-size:.65rem;color:var(--dim);text-transform:uppercase;letter-spacing:.09em}.p2-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.utility{min-height:74px;display:grid;place-items:center;text-align:center;padding:10px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);text-decoration:none;color:var(--muted);font-weight:800;font-size:.78rem}.bottom-tabs{position:sticky;bottom:0;z-index:25;display:none;grid-template-columns:repeat(4,1fr);background:rgba(4,4,17,.94);backdrop-filter:blur(12px);border-top:1px solid rgba(212,168,50,.2)}.bottom-tabs a{text-align:center;text-decoration:none;color:var(--muted);padding:10px 4px;font-size:.68rem}.bottom-tabs .on{color:var(--gold2)}footer{padding:28px 18px 90px;text-align:center;color:var(--dim);font-size:.78rem}.phase-hero{padding:22px 0 16px;background:linear-gradient(120deg,rgba(96,0,20,.5),rgba(5,5,18,.72),rgba(0,28,115,.5));border-bottom:1px solid var(--line)}.phase-head{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}.back{color:var(--gold2);text-decoration:none;font-size:.78rem}.phase-no{width:68px;height:68px;border-radius:18px;display:grid;place-items:center;background:rgba(212,168,50,.14);border:1px solid var(--goldline);font-family:Cinzel,serif;font-size:1.7rem;color:var(--gold2)}.phase-title h1{margin:4px 0;font-family:Cinzel,serif;font-size:clamp(1.6rem,8vw,3rem);line-height:1}.phase-title p{margin:0;color:var(--muted)}.detail-grid{display:grid;grid-template-columns:1fr .8fr;gap:14px}.mechanics{display:grid;gap:9px;margin:0;padding:0;list-style:none}.mechanics li{padding:11px;border-radius:12px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07);color:var(--muted);font-size:.86rem}.phase-nav{display:flex;gap:8px;overflow:auto;padding:12px 18px;background:rgba(5,5,18,.88);border-bottom:1px solid var(--line)}.phase-nav a{flex:0 0 auto;text-decoration:none;padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.06);color:var(--muted);font-size:.76rem}.phase-nav a.active{background:rgba(212,168,50,.16);color:var(--gold2);border:1px solid var(--goldline)}@media(max-width:760px){.nav{display:none}.hero{min-height:370px;padding-top:70px}.p0-grid,.p1-grid,.detail-grid{grid-template-columns:1fr}.p0-grid{margin-top:-34px}.section{padding:18px 0}.score-card{padding:13px}.nation img{width:48px}.activity-card h2{font-size:1.05rem}.card{padding:13px}.p2-strip{grid-template-columns:repeat(3,1fr)}.bottom-tabs{display:grid}.phase-head{grid-template-columns:1fr}.phase-no{width:56px;height:56px;font-size:1.35rem}.phase-hero{padding-top:18px}.top{height:52px}.brand{font-size:.86rem}.container{padding:0 14px}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* Typography and alignment polish */
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,.headline,.brand{font-kerning:normal;text-wrap:balance}.headline{text-shadow:0 3px 18px rgba(0,0,0,.92),0 0 22px rgba(212,168,50,.18);letter-spacing:.025em}.sub{color:#d8d4ff;text-shadow:0 2px 12px rgba(0,0,0,.92);font-size:clamp(.88rem,1.7vw,1.04rem);line-height:1.62}.hero-copy{width:min(92vw,820px);padding:12px 18px;border-radius:14px;background:linear-gradient(180deg,rgba(4,4,17,.18),rgba(4,4,17,.42));backdrop-filter:blur(1px)}.priority{align-items:center}.priority span:first-child{font-size:.72rem;color:#f4d56a}.card,.activity-card,.score-card{overflow:hidden}.card h2,.card h3,.activity-card h2{font-size:clamp(1rem,2vw,1.38rem);line-height:1.16;text-wrap:balance}.card p,.activity-card p,.mechanics li{color:#c4c0ec;line-height:1.58}.performer-row{text-align:left}.phase-link{text-align:left}.utility{line-height:1.25}.btn{letter-spacing:.01em}.phase-title h1{text-shadow:0 3px 16px rgba(0,0,0,.75);letter-spacing:.025em}.phase-title p{color:#d1cdf4}.phase-head{min-height:112px}.mechanics li{text-align:left}.reward-box .big h2{font-size:clamp(1.05rem,2.2vw,1.45rem);line-height:1.18}.score-meta,.tag{font-weight:700}
+@media(max-width:760px){.headline{font-size:clamp(1.85rem,9vw,3rem);line-height:1.03}.sub{font-size:.9rem;line-height:1.5}.hero-copy{padding:10px 12px;border-radius:12px}.priority{gap:6px}.priority span:first-child{font-size:.66rem}.priority span:last-child{font-size:.68rem}.card,.activity-card,.score-card{border-radius:13px}.card h2,.card h3,.activity-card h2{font-size:1.02rem}.phase-title h1{font-size:clamp(1.55rem,9vw,2.5rem)}.phase-title p{font-size:.88rem}.phase-nav{scroll-padding-inline:14px}.performer-row{grid-template-columns:auto 1fr;}.performer-row .score-num{grid-column:2;justify-self:start}.activity-page strong{font-size:1rem}.utility{min-height:62px}}
+
+
+  /* ── IMPECCABLE POLISH: campaign-wide finish pass ── */
+
+:root{--p:#c01820;--p-lt:#ff5560;--c:#1a4fbf;--c-lt:#5ab4ff;--gold:#d4a832;--gold2:#f0d060;--bg:#030312;--panel:#0b0b22;--muted:#b9b3e8;--line:rgba(255,255,255,.1)}
+body{background:linear-gradient(180deg,rgba(3,3,18,.35),rgba(3,3,18,.82) 420px,var(--bg)),radial-gradient(ellipse 55% 70% at 18% 18%,rgba(192,24,32,.25),transparent 60%),radial-gradient(ellipse 55% 70% at 84% 18%,rgba(26,79,191,.25),transparent 60%),url('KV-1920x1080-Plain.png') center top/cover no-repeat fixed,var(--bg);color:#f5f1ff}
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(3,3,18,.08),rgba(3,3,18,.92) 76%,var(--bg))}
+.top{position:sticky;top:0;background:rgba(3,3,18,.96);border-bottom:1px solid rgba(212,168,50,.18);box-shadow:0 2px 20px rgba(0,0,0,.5)}
+.brand{display:flex;align-items:center;gap:10px;color:var(--gold2);background:none!important;-webkit-text-fill-color:initial!important;text-shadow:0 0 16px rgba(212,168,50,.18)}
+.brand::before{content:'';width:74px;height:30px;background:url('cabal-pride-logo.png') center/contain no-repeat;filter:drop-shadow(0 7px 12px rgba(0,0,0,.65))}
+.nav a,.phase-nav a,.btn,.utility,.phase-link{transition:transform .18s ease,color .18s ease,background .18s ease,border-color .18s ease}.nav a:hover,.phase-nav a:hover,.phase-link:hover,.utility:hover{transform:translateY(-1px)}
+.phase-hero{background:linear-gradient(110deg,rgba(92,0,24,.72),rgba(6,6,24,.72) 50%,rgba(5,34,96,.66));border-bottom:1px solid rgba(212,168,50,.18)}
+.phase-no{background:rgba(212,168,50,.13);border-color:rgba(212,168,50,.35);color:var(--gold2);box-shadow:none}.phase-title h1{color:#fff4bf;text-shadow:0 0 26px rgba(212,168,50,.22)}.phase-title p,.card p,.activity-card p,.mechanics li{color:#d1cdf4}.back{color:var(--gold2);text-transform:uppercase;letter-spacing:.08em;font-weight:800}
+.score-card,.card,.activity-card,.phase-card,.performer-card,.phase-link,.utility{background:linear-gradient(180deg,rgba(11,11,34,.88),rgba(6,6,24,.95));border-color:rgba(212,168,50,.14);box-shadow:none}.score-card{border-color:rgba(212,168,50,.32);background:linear-gradient(105deg,rgba(92,0,24,.66),rgba(10,12,38,.9) 52%,rgba(5,34,96,.66))}
+.priority span:first-child{color:var(--gold2);letter-spacing:.12em}.btn{background:var(--gold);color:#080812}.btn.secondary,.utility{background:rgba(212,168,50,.1);color:var(--gold2);border-color:rgba(212,168,50,.25)}
+.performer-row,.mechanics li,.phase-link{background:rgba(3,3,18,.42);border-color:rgba(255,255,255,.08)}.phase-link b,.card h2,.card h3,.activity-card h2{color:#fff4bf;text-wrap:balance}.bottom-tabs{background:rgba(3,3,18,.96);border-top-color:rgba(212,168,50,.18)}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px;border-radius:8px}a,button{touch-action:manipulation}.btn,.utility,.phase-link,.bottom-tabs a{min-height:44px}
+@media(max-width:760px){body{background-attachment:scroll}.brand::before{width:56px}.top{gap:8px}.nav{display:none}.phase-nav{scrollbar-width:none}.phase-nav::-webkit-scrollbar{display:none}.phase-head{min-height:auto}.p2-strip{grid-template-columns:1fr 1fr}.mechanics li{font-size:.82rem}}
+@media(max-width:420px){.p2-strip{grid-template-columns:1fr}.actions{grid-template-columns:1fr}.score-top{gap:4px}.nation strong{font-size:2rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+/* === PHASE EMBLEM FIX: use full faction crest images === */
+.nation img{object-fit:contain!important;padding:6px!important;filter:drop-shadow(0 0 10px rgba(255,255,255,.22));}
+.nation{min-width:0;}
+.score-top{overflow:hidden;}
+
+  /* === CABAL PRIDE ARCANE ATMOSPHERE: WebGL-inspired particle ambience === */
+  :root{
+    --arcane-red:rgba(255,66,82,.72);
+    --arcane-blue:rgba(78,174,255,.72);
+    --arcane-gold:rgba(240,208,96,.82);
+  }
+  body{position:relative;isolation:isolate}
+  body::before{
+    content:"";position:fixed;inset:-12%;z-index:-3;pointer-events:none;
+    background:
+      radial-gradient(circle at 18% 28%,rgba(192,24,32,.22),transparent 34%),
+      radial-gradient(circle at 82% 24%,rgba(26,79,191,.24),transparent 36%),
+      radial-gradient(circle at 50% 8%,rgba(240,208,96,.08),transparent 30%),
+      linear-gradient(180deg,rgba(3,3,18,.18),rgba(3,3,18,.92));
+    filter:saturate(1.08);
+    animation:arcane-drift 18s ease-in-out infinite alternate;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      linear-gradient(90deg,rgba(255,66,82,.08),transparent 30%,transparent 70%,rgba(78,174,255,.08)),
+      radial-gradient(ellipse at 50% 120%,rgba(0,0,0,.72),transparent 58%);
+    mix-blend-mode:screen;opacity:.72;
+  }
+  #arcane-particles{
+    position:fixed;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none;
+    opacity:.72;mix-blend-mode:screen;
+  }
+  .guild-card,.leaderboard-card,.reward-card,.score-card,.activity-card,.card,.phase-card,.activity-panel,.activity-table-wrap,.gp-card{
+    position:relative;
+  }
+  .guild-card::after,.leaderboard-card::after,.reward-card::after,.score-card::after,.activity-card::after,.card::after,.phase-card::after,.activity-panel::after,.activity-table-wrap::after,.gp-card::after{
+    content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    background:linear-gradient(115deg,rgba(255,255,255,.08),transparent 26%,transparent 74%,rgba(240,208,96,.06));
+    opacity:.46;mix-blend-mode:screen;
+  }
+  .phase-card:hover,.guild-card:hover,.card:hover,.activity-panel:hover,.gp-card:hover{
+    box-shadow:0 0 0 1px rgba(240,208,96,.18),0 18px 52px rgba(0,0,0,.36),0 0 34px rgba(78,174,255,.10);
+  }
+  @keyframes arcane-drift{
+    from{transform:translate3d(-1.2%,0,0) scale(1.02)}
+    to{transform:translate3d(1.2%,-1%,0) scale(1.05)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    body::before{animation:none}
+    #arcane-particles{display:none}
+  }
+
+
+  /* Arcane layer stacking: keep particles visible but below UI */
+  #arcane-particles{z-index:0}
+  body::after{z-index:0}
+  body > :not(#arcane-particles):not(script){position:relative;z-index:1}
+  #site-nav,.top-nav,.top,.phase-nav,.bottom-tabs{z-index:300}
+
+
+
+  /* === SHARED PHASE COMMUNITY FOOTER: original hub link data === */
+  .phase-community-footer{padding:34px 0 30px;border-top:1px solid rgba(255,255,255,.08);background:radial-gradient(circle at 16% 0%,rgba(192,24,32,.13),transparent 34%),radial-gradient(circle at 84% 0%,rgba(26,79,191,.15),transparent 36%),#050517;text-align:center}
+  .phase-community-inner{max-width:900px;margin:0 auto;padding:0 18px}.phase-community-footer .section-head{margin:0 auto 24px}.phase-community-footer .section-label{display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:9px;color:#a87810;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:900}.phase-community-footer .section-label::before,.phase-community-footer .section-label::after{content:'◆';font-size:.42rem}.phase-community-footer .section-title{font-family:'Cinzel',serif;font-size:clamp(2rem,3.1vw,2.55rem);line-height:1.05;color:#d4a832;text-shadow:0 0 18px rgba(212,168,50,.18)}.phase-community-footer .section-sub{margin:13px auto 0;max-width:720px;color:#c8c2ef;font-size:1rem;line-height:1.45}.phase-community-grid{display:flex;justify-content:center;align-items:flex-start;gap:58px;flex-wrap:wrap}.phase-community-group{width:132px;display:flex;flex-direction:column;align-items:center;gap:10px}.phase-community-icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.035);font-size:1.5rem;font-weight:900}.phase-community-group.official .phase-community-icon{border:2px solid #1477e8;color:#4aa0ff}.phase-community-group.community .phase-community-icon{border:2px solid rgba(212,168,50,.68);color:#d4a832}.phase-community-label{color:#5e5cdc;font-size:.72rem;line-height:1.45;letter-spacing:.16em;font-weight:900;text-transform:uppercase}.phase-community-links{display:grid;gap:4px;color:#c9c4ef;font-size:.72rem;line-height:1.35}.phase-community-links span{opacity:.88}@media(max-width:620px){.phase-community-grid{gap:34px}.phase-community-footer .section-sub{font-size:.88rem}}
+
+
+/* === SHARED HUB HEADER LINKS: mirror original hub nav === */
+.hub-links{display:flex;align-items:center;justify-content:center;gap:8px;min-width:0}
+.hub-links a{display:inline-flex;align-items:center;justify-content:center;min-height:32px;padding:7px 10px;border-radius:999px;border:1px solid rgba(212,168,50,.16);background:rgba(255,255,255,.035);color:#c9c4ff;font-size:.68rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease}
+.hub-links a:hover{background:rgba(212,168,50,.12);border-color:rgba(212,168,50,.38);color:#f0d060;transform:translateY(-1px)}
+.top .brand,.top-nav .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#f0d060}
+.top .brand img,.top-nav .brand img{width:86px;height:auto;object-fit:contain;filter:drop-shadow(0 0 12px rgba(96,165,250,.22))}
+.top .brand span:last-child,.top-nav .brand span:last-child{font-family:'Cinzel',serif;font-weight:900;letter-spacing:.08em;color:#f0d060;white-space:nowrap}
+@media(max-width:980px){.hub-links{order:3;grid-column:1/-1;width:100%;justify-content:flex-start;overflow-x:auto;padding-bottom:4px}.hub-links a{font-size:.62rem;padding:6px 9px}.top .brand img,.top-nav .brand img{width:72px}}
+@media(max-width:640px){.hub-links{gap:6px}.hub-links a{min-height:28px}.top .brand span:last-child,.top-nav .brand span:last-child{font-size:.82rem}}
+
+
+/* === FINAL PHASE CHROME ALIGNMENT === */
+.top-nav{grid-template-columns:auto minmax(260px,1fr) auto}
+.top-nav .brand{justify-self:start;background:none!important;-webkit-background-clip:initial!important;background-clip:initial!important;color:#f0d060!important;filter:none!important;font-size:.92rem}
+.top-nav .brand span:last-child{color:#f0d060!important;background:none!important;-webkit-text-fill-color:#f0d060!important}
+.phase-tabs{min-width:0}
+.bottom-tabs{grid-template-columns:repeat(3,1fr)!important}
+@media(max-width:980px){
+  .top{flex-wrap:wrap;height:auto;min-height:58px;padding:10px 14px}
+  .top .hub-links{flex:1 0 100%;order:3;justify-content:flex-start;overflow-x:auto}
+  .top-nav{grid-template-columns:auto 1fr;min-height:92px;height:auto;padding:10px 14px;align-content:center}
+  .top-nav .hub-links{grid-column:1/-1;grid-row:2;justify-content:flex-start;overflow-x:auto;width:100%;padding-bottom:3px}
+  .top-nav .phase-tabs{grid-column:1/-1;grid-row:3;justify-self:start;width:100%;padding-bottom:4px}
+  .top-nav .brand{grid-column:1/-1;grid-row:1}
+}
+@media(max-width:640px){
+  .bottom-tabs a{font-size:.6rem;padding:9px 2px}
+  .top .brand img,.top-nav .brand img{width:64px}
+}
+
+
+/* === STANDARD PHASE HEADER AND FOOTER LOGIC === */
+.phase-community-footer{padding:34px 0 30px;border-top:1px solid rgba(255,255,255,.08);background:radial-gradient(circle at 16% 0%,rgba(192,24,32,.13),transparent 34%),radial-gradient(circle at 84% 0%,rgba(26,79,191,.15),transparent 36%),#050517;text-align:center;}
+.phase-community-inner{max-width:900px;margin:0 auto;padding:0 18px;}
+.phase-community-footer .section-head{margin:0 auto 24px;}
+.phase-community-footer .section-label{display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:9px;color:#a87810;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:900;}
+.phase-community-footer .section-label::before,.phase-community-footer .section-label::after{content:'◆';font-size:.42rem;}
+.phase-community-footer .section-title{font-family:'Cinzel',serif;font-size:clamp(2rem,3.1vw,2.55rem);line-height:1.05;color:#d4a832;text-shadow:0 0 18px rgba(212,168,50,.18);}
+.phase-community-footer .section-sub{margin:13px auto 0;max-width:720px;color:#c8c2ef;font-size:1rem;line-height:1.45;}
+.phase-community-actions{position:relative;display:flex;justify-content:center;align-items:flex-start;gap:58px;}
+.phase-comm-wrap{width:110px;display:flex;flex-direction:column;align-items:center;gap:12px;position:relative;}
+.phase-comm-btn{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.035);cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;}
+.phase-comm-btn:hover{transform:translateY(-2px);}
+.phase-comm-btn.official{border:2px solid #1477e8;color:#4aa0ff;}
+.phase-comm-btn.community{border:2px solid rgba(212,168,50,.68);color:#d4a832;}
+.phase-facebook-glyph{font-size:1.7rem;font-family:Arial,sans-serif;font-weight:900;line-height:1;}
+.phase-group-glyph{width:25px;height:22px;display:inline-block;position:relative;}
+.phase-group-glyph::before{content:'';position:absolute;left:8px;top:0;width:8px;height:8px;border:2px solid currentColor;border-radius:50%;}
+.phase-group-glyph::after{content:'';position:absolute;left:1px;right:1px;bottom:0;height:11px;border:2px solid currentColor;border-top:0;border-radius:0 0 12px 12px;}
+.phase-comm-label{max-width:110px;color:#5e5cdc;font-size:.72rem;line-height:1.45;letter-spacing:.16em;font-weight:900;text-align:center;text-transform:uppercase;}
+.phase-comm-popup{position:absolute;bottom:calc(100% + 12px);left:50%;width:min(230px,calc(100vw - 32px));padding:18px 20px 16px;background:rgba(7,7,27,.98);border:1px solid rgba(255,255,255,.08);box-shadow:0 16px 46px rgba(0,0,0,.62);opacity:0;pointer-events:none;transform:translateX(-50%) translateY(4px);transition:opacity .18s ease,transform .18s ease;z-index:40;}
+.phase-comm-wrap.open .phase-comm-popup,.phase-comm-wrap:hover .phase-comm-popup{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}
+.phase-popup-title{margin:0 0 12px;color:#6461e7;font-size:.68rem;line-height:1.35;letter-spacing:.18em;text-transform:uppercase;font-weight:900;text-align:center;}
+.phase-popup-list{display:grid;gap:8px;justify-items:center;color:#d7d2f5;font-size:.78rem;line-height:1.35;font-weight:700;}
+.top .brand img,.phase-brand img{display:block;}
+@media(max-width:640px){.phase-community-actions{gap:38px}.phase-community-footer .section-sub{font-size:.88rem}.phase-comm-popup{padding:16px 14px}.phase-popup-list{font-size:.74rem}}
+
+
+/* === SINGLE HEADER LOGO GUARD === */
+.brand::before,
+.nav-brand::before,
+.phase-brand::before{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+  width:0 !important;
+  height:0 !important;
+}
+.brand-mark,
+.brand-fallback-mark{
+  display:none !important;
+}
+.nav-brand-logo:has(img) .brand-fallback-mark{
+  display:none !important;
+}
+
+
+.phase-nav{
+  justify-content:center !important;
+  gap:12px !important;
+  flex-wrap:wrap !important;
+  overflow:visible !important;
+}
+.phase-nav a{
+  min-width:138px !important;
+  text-align:center !important;
+  font-weight:800 !important;
+  letter-spacing:.02em !important;
+  white-space:nowrap !important;
+}
+@media(max-width:560px){
+  .phase-nav{gap:8px !important;padding-inline:10px !important;}
+  .phase-nav a{min-width:auto !important;flex:1 1 100% !important;font-size:.78rem !important;}
+}
+
+.phase-name-links{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.phase-name-links a{color:#8f8aa8!important;text-decoration:none;border:1px solid transparent;border-radius:6px;padding:8px 11px;font-size:.66rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;background:transparent;white-space:nowrap}
+.phase-name-links a:hover{color:#d7d2f5!important;background:rgba(255,255,255,.05)}
+.phase-name-links a.active{color:var(--gold2)!important;border-color:rgba(212,168,50,.48);background:rgba(212,168,50,.12)}
+.top .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;white-space:nowrap}
+.top .brand img{width:88px;max-height:34px;object-fit:contain}
+@media(max-width:760px){.top{height:auto;min-height:56px;align-items:flex-start;flex-direction:column;padding-block:8px}.phase-name-links{justify-content:flex-start;width:100%;gap:6px;overflow-x:auto}.phase-name-links a{font-size:.56rem;padding:7px 8px}.top .brand img{width:76px}}
+</style>
+<style id="motion-polish-pass">
+/* === MOTION + POLISH PASS === */
+.score-card, .card, .activity-card, .phase-link, .utility {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.score-card.visible, .card.visible, .activity-card.visible, .phase-link.visible, .utility.visible {
+  opacity: 1;
+  transform: none;
+}
+.status-pill {
+  animation: pulse-pill 2.2s ease-in-out infinite;
+}
+@keyframes pulse-pill {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+  50%       { box-shadow: 0 0 0 6px rgba(74,222,128,0.18); }
+}
+.bar {
+  transition: background-position 0.8s ease;
+}
+.nation strong {
+  font-variant-numeric: tabular-nums;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .score-card, .card, .activity-card, .phase-link, .utility { opacity: 1 !important; transform: none !important; }
+}
+</style></head>
+<body class="phase-page">
+<canvas id="arcane-particles" aria-hidden="true"></canvas>
+  <header class="top"><a class="brand" href="index.html"><img src="cabal-pride-logo.png" alt="CABAL PRIDE"><span>CABAL PRIDE</span></a><nav class="hub-links phase-name-links" aria-label="Campaign phases"><a class="" href="index.html">Guild Pride</a><a class="" href="campaign-landing-dungeon-pride.html">Dungeon Pride</a><a class="active" href="phase-3.html">Grinding Pride</a></nav></header><section class="phase-hero"><div class="container phase-head"><div class="phase-no">3</div><div class="phase-title"><a class="back" href="index.html">← Back to main hub</a><h1>Grinding Pride</h1><p>June 15 - June 28, 2026 · Live now</p></div></div></section><main class="container"><section class="section p0-grid" id="status"><div class="activity-card"><div class="priority"><span>P0 Activity status</span></div><span class="status-pill">Live now</span><h2>Grinding Pride</h2><p>Players grind daily activity, submit proof, and climb the leaderboard through consistent participation.</p><div class="actions"><a class="btn" href="#rules">How to join</a><a class="btn secondary" href="index.html#timeline">All phases</a></div></div><div class="score-card"><div class="priority"><span>P0 Phase score</span></div><div class="score-top"><div class="nation"><img src="Procyon_logo.png" alt="Procyon emblem"><strong class="red">540</strong><small>Procyon</small></div><div class="vs">VS</div><div class="nation"><img src="Capella_logo.png" alt="Capella emblem"><strong class="blue">601</strong><small>Capella</small></div></div><div class="bar" style="--p:47%"></div><div class="score-meta"><span>Procyon 47%</span><span>Capella 53%</span></div></div></section><section class="section detail-grid"><div class="card" id="performers"><div class="priority"><span>P1 Top performers</span></div><div class="performer-list"><div class="performer-row"><span class="rank">1</span><span><b>BlueVanguard</b><small>Capella</small></span><span class="score-num">601 pts</span></div><div class="performer-row"><span class="rank">2</span><span><b>CrimsonArc</b><small>Procyon</small></span><span class="score-num">540 pts</span></div><div class="performer-row"><span class="rank">3</span><span><b>MoonSerpent</b><small>Capella</small></span><span class="score-num">488 pts</span></div></div></div><div class="reward-box"><div class="card big"><div class="priority"><span>P1 Rewards</span></div><h2>Grinding Champion Title + 500 EXP Boost</h2></div><div class="card"><div class="priority"><span>P1 Individual score</span></div><p class="sub" style="margin:0">This page keeps individual standings close to phase details, without pushing the main hub down.</p></div></div></section><section class="section detail-grid" id="rules"><div class="card"><div class="priority"><span>P1 Activity mechanics</span></div><ul class="mechanics"><li>Submit proof of participation during the active window.</li><li>Individual score contributes to the Grinding Pride phase score.</li><li>Top performers are featured during the phase.</li></ul></div><div class="card"><div class="priority"><span>P2 Related links</span></div><div class="p2-strip" style="grid-template-columns:1fr"><a class="utility" href="index.html">Main hub</a><a class="utility" href="index.html#activities">All activity pages</a><a class="utility" href="phase-2.html">Previous phase</a><a class="utility" href="index.html#links">Community links</a></div></div></section></main>
+<section class="phase-community-footer" id="community">
+  <div class="phase-community-inner">
+    <div class="section-head compact">
+      <p class="section-label">Join the War</p>
+      <h2 class="section-title">Community Groups</h2>
+      <p class="section-sub">Official pages and community groups stay compact so the campaign actions remain first.</p>
+    </div>
+    <div class="phase-community-actions">
+      <div class="phase-comm-wrap" id="phase-wrap-official">
+        <button class="phase-comm-btn official" type="button" aria-expanded="false" aria-controls="phase-official-popup" title="Official Page">
+          <span class="phase-facebook-glyph" aria-hidden="true">f</span>
+        </button>
+        <div class="phase-comm-popup" id="phase-official-popup" role="dialog" aria-label="Official page links">
+          <p class="phase-popup-title">Official Page</p>
+          <div class="phase-popup-list"><span>CABAL M PH/ID/2/N</span><span>CABAL PC PH/ID/2/N</span></div>
+        </div>
+        <span class="phase-comm-label">Official Page</span>
+      </div>
+      <div class="phase-comm-wrap" id="phase-wrap-community">
+        <button class="phase-comm-btn community" type="button" aria-expanded="false" aria-controls="phase-community-popup" title="Community Group">
+          <span class="phase-group-glyph" aria-hidden="true"></span>
+        </button>
+        <div class="phase-comm-popup" id="phase-community-popup" role="dialog" aria-label="Community group links">
+          <p class="phase-popup-title">Community<br>Group</p>
+          <div class="phase-popup-list"><span>Nation Group</span><span>Vanguard</span><span>4 Houses</span></div>
+        </div>
+        <span class="phase-comm-label">Community Group</span>
+      </div>
+    </div>
+  </div>
+</section>
+<nav class="bottom-tabs"><a href="index.html#hero">Score</a><a href="index.html#guild-pride">Current</a><a href="index.html#activity">Activity</a><a href="index.html#phases">Phases</a><a href="index.html#community">Links</a></nav><footer>Phase 3 · Grinding Pride</footer>
+<script id="motion-polish-pass-script">
+// Scroll reveal
+(function(){
+const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!reduce && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.score-card,.card,.activity-card,.phase-link,.utility').forEach(el => io.observe(el));
+} else {
+  document.querySelectorAll('.score-card,.card,.activity-card,.phase-link,.utility').forEach(el => el.classList.add('visible'));
+}
+
+// Score count-up
+if (!reduce) {
+  document.querySelectorAll('.nation strong').forEach(el => {
+    const target = parseInt(el.textContent.replace(/,/g,''), 10);
+    if (isNaN(target)) return;
+    const dur = 700, start = performance.now();
+    const ease = t => 1 - Math.pow(1 - t, 3);
+    const tick = now => {
+      const t = Math.min((now - start) / dur, 1);
+      el.textContent = Math.round(ease(t) * target).toLocaleString();
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+}
+}());
+</script>
+<script id="arcane-atmosphere-script">
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const canvas = document.getElementById('arcane-particles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d', { alpha:true });
+  if (!ctx) return;
+  let w = 0, h = 0, dpr = 1, particles = [], t = 0, raf = 0;
+  const colors = ['rgba(255,66,82,.62)','rgba(78,174,255,.62)','rgba(240,208,96,.72)'];
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = canvas.clientWidth || innerWidth;
+    h = canvas.clientHeight || innerHeight;
+    canvas.width = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    const count = Math.max(42, Math.min(96, Math.floor(w * h / 18000)));
+    particles = Array.from({length:count}, (_,i)=>({
+      x:Math.random()*w,
+      y:Math.random()*h,
+      z:.35 + Math.random()*1.25,
+      r:.7 + Math.random()*2.2,
+      a:.18 + Math.random()*.55,
+      hue:i%3,
+      vx:(Math.random()-.5)*.18,
+      vy:(Math.random()-.5)*.16
+    }));
+  }
+  function draw(){
+    t += .008;
+    ctx.clearRect(0,0,w,h);
+    const cx = w/2 + Math.sin(t*.7)*w*.08;
+    const cy = h*.36 + Math.cos(t*.55)*h*.06;
+    for (const p of particles){
+      p.x += p.vx*p.z + Math.sin(t+p.y*.006)*.08;
+      p.y += p.vy*p.z + Math.cos(t+p.x*.006)*.06;
+      if (p.x < -30) p.x = w + 30; if (p.x > w + 30) p.x = -30;
+      if (p.y < -30) p.y = h + 30; if (p.y > h + 30) p.y = -30;
+      const dx = p.x - cx, dy = p.y - cy;
+      const pull = Math.max(0, 1 - Math.sqrt(dx*dx+dy*dy) / Math.max(w,h));
+      ctx.beginPath();
+      ctx.fillStyle = colors[p.hue].replace(/.d+)/, (p.a + pull*.18).toFixed(2)+')');
+      ctx.shadowBlur = 14 + pull*22;
+      ctx.shadowColor = colors[p.hue];
+      ctx.arc(p.x, p.y, p.r + pull*1.4, 0, Math.PI*2);
+      ctx.fill();
+    }
+    ctx.shadowBlur = 0;
+    for (let i=0;i<particles.length;i+=3){
+      for (let j=i+1;j<Math.min(i+7,particles.length);j++){
+        const a=particles[i], b=particles[j];
+        const dist = Math.hypot(a.x-b.x,a.y-b.y);
+        if (dist < 118){
+          ctx.strokeStyle = 'rgba(240,208,96,' + ((1-dist/118)*.08).toFixed(3) + ')';
+          ctx.lineWidth = .6;
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        }
+      }
+    }
+    raf = requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', resize, { passive:true });
+  resize(); draw();
+  window.addEventListener('pagehide', ()=>cancelAnimationFrame(raf), { once:true });
+}());
+</script>
+<script id="phase-footer-popup-logic">
+(function(){
+  function closePhasePopups(){
+    document.querySelectorAll('.phase-comm-wrap.open').forEach(function(w){
+      w.classList.remove('open');
+      var btn = w.querySelector('.phase-comm-btn');
+      if (btn) btn.setAttribute('aria-expanded','false');
+    });
+  }
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.phase-comm-btn');
+    if (btn) {
+      var wrap = btn.closest('.phase-comm-wrap');
+      if (!wrap) return;
+      var open = wrap.classList.contains('open');
+      closePhasePopups();
+      if (!open) wrap.classList.add('open');
+      btn.setAttribute('aria-expanded', String(!open));
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+    if (!e.target.closest('.phase-comm-popup')) closePhasePopups();
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closePhasePopups(); });
+}());
+</script>
+</body>
+</html>

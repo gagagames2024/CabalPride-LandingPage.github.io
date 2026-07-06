@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CABAL PRIDE - Campaign Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Exo+2:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#030312;
+      --panel:rgba(8,8,28,.72);
+      --panel-strong:rgba(12,12,38,.86);
+      --gold:#f0d060;
+      --gold-2:#ffd433;
+      --red:#ff4758;
+      --blue:#5ab4ff;
+      --ink:#fff7d6;
+      --muted:#c8c4ee;
+      --line:rgba(240,208,96,.28);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--ink);
+      font-family:'Exo 2',system-ui,sans-serif;
+      overflow-x:hidden;
+      background:#030312;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:url('KV-1920x1080-Plain.png');
+      background-position:center top;
+      background-size:cover;
+      background-repeat:no-repeat;
+      opacity:.78;
+      filter:saturate(1.04) contrast(1.04);
+      pointer-events:none;
+    }
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 42%,rgba(134,0,40,.42),transparent 34%),
+        radial-gradient(circle at 78% 38%,rgba(0,95,180,.42),transparent 36%),
+        linear-gradient(180deg,rgba(3,3,18,.25),rgba(3,3,18,.78) 54%,rgba(3,3,18,.98));
+      pointer-events:none;
+    }
+    a{color:inherit;text-decoration:none}
+    .page{position:relative;z-index:1;min-height:100vh;display:flex;justify-content:center;padding:34px 18px 0}
+    .hub{width:min(1060px,100%);display:flex;flex-direction:column;align-items:center;text-align:center}
+    .brand-logo{width:min(390px,70vw);height:auto;display:block;margin:0 auto 26px;filter:drop-shadow(0 18px 30px rgba(0,0,0,.7)) drop-shadow(0 0 22px rgba(90,180,255,.34))}
+    .timeline-card{width:min(860px,100%);padding:14px 16px 16px;border:1px solid rgba(240,208,96,.28);background:linear-gradient(180deg,rgba(14,14,42,.74),rgba(7,7,25,.86));box-shadow:0 22px 60px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(6px)}
+    .timeline-label{margin:0 0 12px;color:#fff7c7;font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 2px 8px rgba(0,0,0,.65)}
+    .phase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:stretch}
+    .phase-card{position:relative;min-height:122px;display:flex;flex-direction:column;justify-content:center;padding:16px 12px 14px;color:#f5f0ff;background:linear-gradient(160deg,rgba(20,20,54,.76),rgba(8,8,28,.84));border:1px solid rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease;overflow:hidden}
+    .phase-card::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,71,88,.12),transparent 42%,rgba(90,180,255,.12));opacity:.7;pointer-events:none}
+    .phase-card.active{border:2px solid var(--gold-2);background:linear-gradient(160deg,rgba(80,42,18,.74),rgba(15,15,40,.9));box-shadow:0 0 0 4px rgba(255,212,51,.08),0 0 28px rgba(240,208,96,.24),inset 0 1px 0 rgba(255,255,255,.1)}
+    .phase-card:hover,.phase-card:focus-visible{transform:translateY(-2px);border-color:var(--gold-2);outline:none;box-shadow:0 18px 34px rgba(0,0,0,.32),0 0 24px rgba(240,208,96,.18)}
+    .phase-title,.phase-desc,.phase-link{position:relative;z-index:1}
+    .phase-title{margin:0 0 12px;font-size:1rem;line-height:1.18;font-weight:900;text-transform:uppercase;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.64)}
+    .phase-desc{margin:0 0 5px;font-size:.82rem;font-weight:800;line-height:1.25;color:#f0ecff}
+    .phase-link{font-size:.72rem;color:var(--gold);font-weight:900}
+    .current-label{margin:20px 0 16px;min-width:310px;padding:11px 20px;background:linear-gradient(180deg,rgba(20,20,54,.86),rgba(8,8,28,.92));border:1px solid rgba(240,208,96,.22);color:#fff7c7;font-size:.84rem;font-weight:900;text-transform:uppercase;box-shadow:0 16px 38px rgba(0,0,0,.32)}
+    .leaderboard{width:min(940px,100%);display:grid;grid-template-columns:repeat(5,1fr);gap:16px;align-items:end;margin-bottom:18px}
+    .leader-card{min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:8px;filter:drop-shadow(0 16px 24px rgba(0,0,0,.28))}
+    .guild-logo{width:96px;height:96px;margin:0 auto 4px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 50% 28%,#f8fbff 0 24%,#b6eaff 25% 42%,#f2f7ff 43% 58%,#82c74d 59% 100%);border:3px solid rgba(255,255,255,.92);box-shadow:0 0 0 5px rgba(240,208,96,.12),0 0 24px rgba(90,180,255,.22);color:#0c2149;font-family:'Cinzel',serif;font-size:1.45rem;font-weight:900}
+    .guild-logo img{width:100%;height:100%;object-fit:cover}
+    .guild-title,.guild-score{display:flex;align-items:center;justify-content:center;padding:9px 8px;background:linear-gradient(180deg,rgba(26,25,54,.9),rgba(12,12,35,.94));border:1px solid rgba(255,255,255,.1);color:#fff;font-weight:900;line-height:1.12;overflow-wrap:anywhere;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+    .guild-title{min-height:56px;font-size:.88rem;font-family:'Cinzel',serif;text-transform:uppercase;color:#fff7c7}
+    .guild-score{min-height:44px;color:var(--gold);font-size:.9rem;text-shadow:0 0 12px rgba(240,208,96,.24)}
+    .learn-more{display:inline-flex;align-items:center;justify-content:center;min-width:300px;min-height:52px;padding:14px 26px;background:linear-gradient(180deg,#d80f17,#a8060e);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-weight:900;letter-spacing:.05em;box-shadow:0 16px 34px rgba(216,15,23,.28),0 0 24px rgba(216,15,23,.22);transition:transform .18s ease,filter .18s ease}
+    .learn-more:hover,.learn-more:focus-visible{transform:translateY(-2px);filter:brightness(1.08);outline:2px solid var(--gold-2);outline-offset:3px}
+    .community{width:100vw;margin-top:0;padding:18px 18px 28px;background:linear-gradient(180deg,rgba(10,6,22,.98),rgba(3,3,18,.98));border-top:1px solid rgba(240,208,96,.2);text-align:center;box-shadow:0 -18px 44px rgba(0,0,0,.28)}
+    .community-kicker{margin:0 0 10px;color:var(--gold-2);font-size:.76rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.community-icon{width:64px;height:64px;margin:0 auto 8px;display:grid;place-items:center;border-radius:50%;border:2px solid rgba(240,208,96,.75);background:rgba(240,208,96,.11);color:#f0d060;box-shadow:0 0 0 7px rgba(240,208,96,.06),0 0 24px rgba(240,208,96,.18);transition:transform .18s ease,background .18s ease}.community-icon:hover,.community-icon:focus-visible{transform:translateY(-2px) scale(1.04);background:rgba(240,208,96,.2);outline:none}.community-icon svg{width:32px;height:32px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}.community-label{margin:0;color:#fff7c7;font-weight:900;font-size:.82rem}.source-note{margin:12px 0 0;color:rgba(255,255,255,.42);font-size:.62rem}
+    @media(max-width:760px){.page{padding:26px 12px 0}.brand-logo{width:min(300px,78vw);margin-bottom:22px}.timeline-card{padding:10px}.phase-grid{grid-template-columns:1fr;gap:9px}.phase-card{min-height:92px}.leaderboard{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:min(430px,100%)}.leader-card:first-child{grid-column:1 / -1;width:min(210px,100%);justify-self:center}.guild-logo{width:82px;height:82px}.current-label,.learn-more{min-width:min(300px,100%)}}@media(max-width:420px){.leaderboard{grid-template-columns:1fr;width:min(240px,100%)}}
+  
+
+    /* === Restored previous fixed header === */
+    :root{--nav-h:64px;}
+    #site-nav{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      min-height:var(--nav-h);
+      z-index:300;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:8px 22px;
+      background:rgba(3,3,18,.94);
+      border-bottom:1px solid rgba(240,208,96,.18);
+      box-shadow:0 2px 24px rgba(0,0,0,.48),inset 0 1px 0 rgba(255,255,255,.06);
+      backdrop-filter:blur(10px);
+    }
+    .nav-brand{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      flex:0 0 auto;
+      color:#f0d060;
+      font-family:'Cinzel',serif;
+      font-size:1.02rem;
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+    .nav-brand-logo{
+      width:76px;
+      height:34px;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .nav-brand-logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      filter:drop-shadow(0 0 8px rgba(90,180,255,.32));
+    }
+    .phase-header-links{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:8px;
+      min-width:0;
+    }
+    .phase-header-links a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:34px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.045);
+      color:#c8c4ee;
+      font-size:.68rem;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      white-space:nowrap;
+      transition:color .18s ease,background .18s ease,border-color .18s ease,transform .18s ease;
+    }
+    .phase-header-links a:hover,
+    .phase-header-links a:focus-visible{
+      color:#fff7c7;
+      background:rgba(212,168,50,.1);
+      border-color:rgba(240,208,96,.4);
+      transform:translateY(-1px);
+      outline:none;
+    }
+    .phase-header-links a[aria-current="true"]{
+      color:#f0d060;
+      border-color:rgba(240,208,96,.56);
+      background:rgba(212,168,50,.14);
+    }
+    .page{padding-top:calc(var(--nav-h) + 32px) !important;}
+    @media(max-width:760px){
+      :root{--nav-h:92px;}
+      #site-nav{align-items:flex-start;flex-direction:column;gap:7px;padding:8px 12px;}
+      .nav-brand{font-size:.86rem;gap:8px;}
+      .nav-brand-logo{width:68px;height:30px;}
+      .phase-header-links{width:100%;justify-content:flex-start;overflow-x:auto;gap:6px;padding-bottom:2px;scrollbar-width:none;}
+      .phase-header-links::-webkit-scrollbar{display:none;}
+      .phase-header-links a{font-size:.56rem;padding:7px 9px;min-height:30px;}
+      .page{padding-top:calc(var(--nav-h) + 22px) !important;}
+    }
+
+  
+
+    /* === KV top crop enforcement === */
+    body::before{
+      background-position:center top !important;
+      background-size:cover !important;
+      background-repeat:no-repeat !important;
+    }
+    @media(max-aspect-ratio:16/9){
+      body::before{background-size:auto 100vh !important;background-position:center top !important;}
+    }
+    @media(min-aspect-ratio:16/9){
+      body::before{background-size:100vw auto !important;background-position:center top !important;}
+    }
+
+  </style>
+</head>
+<body>
+  <nav id="site-nav" aria-label="Campaign navigation">
+    <a class="nav-brand" href="index.html">
+      <span class="nav-brand-logo"><img src="cabal-pride-logo.png" alt="CABAL PRIDE"></span>
+      <span>CABAL PRIDE</span>
+    </a>
+    <div class="phase-header-links" aria-label="Campaign phases">
+      <a href="index.html" aria-current="true">Guild Pride</a>
+      <a href="campaign-landing-dungeon-pride.html">Dungeon Pride</a>
+      <a href="phase-3.html">Grinding Pride</a>
+    </div>
+  </nav>
+  <main class="page"><div class="hub">
+    <img class="brand-logo" src="cabal-pride-logo.png" alt="CABAL PRIDE">
+    <section class="timeline-card" aria-label="Campaign phase timeline"><p class="timeline-label">Phase, Timeline &amp; Status</p><div class="phase-grid" id="phase-grid"></div></section>
+    <div class="current-label">Top 5 - from Current Phase</div>
+    <section class="leaderboard" id="leaderboard" aria-label="Current phase top 5 guilds"></section>
+    <a class="learn-more" href="phase-1.html">Learn More</a>
+    <section class="community" aria-label="Community group"><p class="community-kicker">Community Group</p><a class="community-icon" id="community-link" href="#" target="_blank" rel="noopener" aria-label="Open all community links"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 11a4 4 0 1 0-8 0"/><path d="M5 20a7 7 0 0 1 14 0"/><path d="M18.5 9.5a2.5 2.5 0 1 0-1.1-4.7"/><path d="M22 18a5.4 5.4 0 0 0-3.5-5"/><path d="M5.5 9.5a2.5 2.5 0 1 1 1.1-4.7"/><path d="M2 18a5.4 5.4 0 0 1 3.5-5"/></svg></a><p class="community-label">Combined community links</p><p class="source-note">Data source: Cabal Pride - HTML Data</p></section>
+  </div></main>
+  <script>
+    const SHEET_ID = '1JqHItiPR19qyFj71VRp7IxTfTWv7ztScPgIpRe_746w';
+    const CONFIG = {
+      sheetSourceUrl: 'https://docs.google.com/spreadsheets/d/1JqHItiPR19qyFj71VRp7IxTfTWv7ztScPgIpRe_746w/edit',
+      currentPhaseUrl: 'phase-1.html',
+      linktreeUrl: '#',
+      phases: [
+        { id: 1, name: 'P1 | 3-14 JUL', phaseName: 'Guild Pride', status: 'ACTIVE', desc: 'Short Description', url: 'phase-1.html' },
+        { id: 2, name: 'P2 | 15-24 JUL', phaseName: 'Dungeon Pride', status: 'NOT STARTED', desc: 'Short Description', url: 'campaign-landing-dungeon-pride.html' },
+        { id: 3, name: 'P3 | 25-5 AUG', phaseName: 'Grinding Pride', status: 'NOT STARTED', desc: 'Short Description', url: 'phase-3.html' }
+      ],
+      guilds: [
+        { name: 'Arcane Bastion', logo: '', color: '#6366F1', score: 26824 },
+        { name: 'Azure Oath', logo: '', color: '#38BDF8', score: 23366 },
+        { name: 'Valkyrie Bloom', logo: '', color: '#EC4899', score: 23016 },
+        { name: 'Solar Warden', logo: '', color: '#FACC15', score: 21347 },
+        { name: 'Void Walkers', logo: '', color: '#8B5CF6', score: 21208 }
+      ]
+    };
+    function esc(value){return String(value == null ? '' : value).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+    function initials(name){return name.split(/\s+/).map(function(part){return part[0] || '';}).join('').slice(0,2).toUpperCase();}
+    function renderHub(){
+      document.getElementById('phase-grid').innerHTML = CONFIG.phases.map(function(phase){return '<a class="phase-card '+(phase.status === 'ACTIVE' ? 'active' : '')+'" href="'+esc(phase.url)+'" aria-label="'+esc(phase.phaseName)+' '+esc(phase.status)+'"><h2 class="phase-title">'+esc(phase.name)+'<br>'+esc(phase.status)+'</h2><p class="phase-desc">'+esc(phase.desc)+'</p><span class="phase-link">Learn more</span></a>';}).join('');
+      document.getElementById('leaderboard').innerHTML = CONFIG.guilds.map(function(guild){var logo = guild.logo ? '<img src="'+esc(guild.logo)+'" alt="'+esc(guild.name)+' logo">' : initials(guild.name);return '<article class="leader-card" style="--guild:'+esc(guild.color || '#f0d060')+'"><div class="guild-logo">'+logo+'</div><div class="guild-title">'+esc(guild.name)+'</div><div class="guild-score">'+Number(guild.score || 0).toLocaleString()+' pts</div></article>';}).join('');
+      document.querySelector('.learn-more').href = CONFIG.currentPhaseUrl;
+      document.getElementById('community-link').href = CONFIG.linktreeUrl || '#';
+    }
+    function sheetRows(sheet,range){return new Promise(function(resolve,reject){var cb='__cabalSheet'+Date.now()+Math.floor(Math.random()*9999),done=false,timer=setTimeout(function(){cleanup();reject(new Error('Sheet load timed out'));},9000);function cleanup(){done=true;clearTimeout(timer);delete window[cb];if(script.parentNode)script.parentNode.removeChild(script)}window[cb]=function(res){if(done)return;cleanup();if(!res||res.status==='error')return reject(new Error('Sheet response error'));var headers=((res.table&&res.table.cols)||[]).map(function(col){return col.label||col.id||'';});var rows=(res.table&&res.table.rows)||[];var data=rows.map(function(row){return (row.c||[]).map(function(cell){return cell ? (cell.f || cell.v || '') : '';});});resolve(headers.some(Boolean)?[headers].concat(data):data);};var script=document.createElement('script');script.src='https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?sheet='+encodeURIComponent(sheet)+'&range='+encodeURIComponent(range)+'&tqx=responseHandler:'+cb;script.onerror=function(){cleanup();reject(new Error('Sheet script failed'));};document.head.appendChild(script);});}
+    function tableObjects(rows){var headers=(rows[0]||[]).map(function(h){return String(h).trim();});return rows.slice(1).filter(function(r){return r.some(Boolean);}).map(function(row){var obj={};headers.forEach(function(h,i){obj[h]=row[i]||'';});return obj;});}
+    function num(value){return Number(String(value||'').replace(/,/g,''))||0;}
+    function loadLiveData(){
+      Promise.all([
+        sheetRows('Campaign Phases','A4:H20'),
+        sheetRows('Guild Lore','A4:O200'),
+        sheetRows('Community Links','A4:F40')
+      ]).then(function(result){
+        var phases=tableObjects(result[0]),guilds=tableObjects(result[1]),links=tableObjects(result[2]);
+        if(phases.length){CONFIG.phases=phases.slice(0,3).map(function(p){return {id:p.phase_id,name:'P'+p.phase_id+' | '+p.date_range,phaseName:p.phase_name,status:String(p.status||'').toUpperCase()==='ACTIVE'?'ACTIVE':'NOT STARTED',desc:p.short_description||'Short Description',url:p.detail_page_url||p.main_page_url||'#'};});}
+        var approved=guilds.filter(function(g){return (g.guild_name||'') && String(g.status||'').toLowerCase()!=='hidden';}).sort(function(a,b){return num(b.final_score)-num(a.final_score);}).slice(0,5);
+        if(approved.length){CONFIG.guilds=approved.map(function(g){return {name:g.guild_name,logo:g.guild_logo_url,color:g.platform==='Cabal PC'?'#35d07f':'#5ab4ff',score:num(g.final_score)};});}
+        var linktree=links.find(function(l){return String(l.link_type||'').toLowerCase()==='linktree';});
+        if(linktree&&linktree.url&&linktree.url.indexOf('PASTE_')!==0)CONFIG.linktreeUrl=linktree.url;
+        renderHub();
+      }).catch(function(){renderHub();});
+    }
+    renderHub();
+    loadLiveData();
+  </script>
+</body>
+</html>
