@@ -224,9 +224,12 @@
   .community-icon{width:58px;height:58px;}
 }
 
+  
+    .company-flag{position:fixed;top:calc(var(--nav-h,64px) + 12px);left:16px;z-index:120;display:block;width:72px;max-width:18vw;border-radius:10px;overflow:hidden;background:#030312;border:1px solid rgba(240,208,96,.34);box-shadow:0 14px 34px rgba(0,0,0,.42),0 0 24px rgba(216,15,23,.18);transition:transform .18s ease,border-color .18s ease,filter .18s ease}.company-flag:hover,.company-flag:focus-visible{transform:translateY(-2px);border-color:#f0d060;filter:brightness(1.08);outline:none}.company-flag img{display:block;width:100%;height:auto}@media(max-width:840px){.company-flag{top:calc(var(--nav-h,84px) + 8px);left:10px;width:52px;border-radius:8px}}
   </style>
 </head>
 <body>
+  <a class="company-flag" href="https://combocabalm.com/sea/id/" target="_blank" rel="noopener" aria-label="Open Combo Interactive official page"><img src="Combo Logo.png" alt="Combo Interactive"></a>
   <nav id="site-nav" aria-label="Campaign navigation">
     <a class="nav-brand" href="index.html">
       <span class="nav-brand-logo"><img src="cabal-pride-logo.png" alt="CABAL PRIDE"></span>
@@ -274,9 +277,9 @@
       applyCommunityLink();
     }
     function validUrl(url){url=String(url||'').trim();if(!url||url.indexOf('PASTE_')===0||url==='#')return '';if(!/^https?:\/\//i.test(url)&&/^[a-z0-9.-]+\.[a-z]{2,}/i.test(url))url='https://'+url;return /^https?:\/\//i.test(url)?url:'';}
-    function applyCommunityLink(){var link=document.getElementById('community-link'),note=document.getElementById('community-source'),url=validUrl(CONFIG.linktreeUrl);if(!link)return;if(url){link.href=url;link.setAttribute('aria-disabled','false');if(note)note.textContent='Opens the official Linktree for all CABAL PRIDE groups';}else{link.href='#';link.setAttribute('aria-disabled','true');if(note)note.textContent='Community link not connected yet';}}
+    function applyCommunityLink(){var link=document.getElementById('community-link'),note=document.getElementById('community-source'),url=validUrl(CONFIG.linktreeUrl);if(!link)return;if(url){link.href=url;link.setAttribute('aria-disabled','false');if(note)note.textContent='Opens the official Linktree for all CABAL PRIDE groups';}else{link.href='#';link.setAttribute('aria-disabled','true');if(note)note.textContent='Add the Linktree URL in Community Links tab, cell C5';}}
     document.addEventListener('click',function(e){var link=e.target.closest&&e.target.closest('#community-link[aria-disabled="true"]');if(link){e.preventDefault();}});
-    function sheetRows(sheet,range){return new Promise(function(resolve,reject){var cb='__cabalSheet'+Date.now()+Math.floor(Math.random()*9999),done=false,timer=setTimeout(function(){cleanup();reject(new Error('Sheet load timed out'));},9000);function cleanup(){done=true;clearTimeout(timer);delete window[cb];if(script.parentNode)script.parentNode.removeChild(script)}window[cb]=function(res){if(done)return;cleanup();if(!res||res.status==='error')return reject(new Error('Sheet response error'));var headers=((res.table&&res.table.cols)||[]).map(function(col){return col.label||col.id||'';});var rows=(res.table&&res.table.rows)||[];var data=rows.map(function(row){return (row.c||[]).map(function(cell){return cell ? (cell.f || cell.v || '') : '';});});resolve(headers.some(Boolean)?[headers].concat(data):data);};var script=document.createElement('script');script.src='https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?sheet='+encodeURIComponent(sheet)+'&range='+encodeURIComponent(range)+'&tqx=responseHandler:'+cb;script.onerror=function(){cleanup();reject(new Error('Sheet script failed'));};document.head.appendChild(script);});}
+    function sheetRows(sheet,range){return new Promise(function(resolve,reject){var cb='__cabalSheet'+Date.now()+Math.floor(Math.random()*9999),done=false,timer=setTimeout(function(){cleanup();reject(new Error('Sheet load timed out'));},9000);function cleanup(){done=true;clearTimeout(timer);delete window[cb];if(script.parentNode)script.parentNode.removeChild(script)}window[cb]=function(res){if(done)return;cleanup();if(!res||res.status==='error')return reject(new Error('Sheet response error'));var headers=((res.table&&res.table.cols)||[]).map(function(col){return col.label||col.id||'';});var rows=(res.table&&res.table.rows)||[];var data=rows.map(function(row){return (row.c||[]).map(function(cell){return cell ? (cell.f || cell.v || '') : '';});});resolve(headers.some(Boolean)?[headers].concat(data):data);};var script=document.createElement('script');script.src='https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?sheet='+encodeURIComponent(sheet)+'&range='+encodeURIComponent(range)+'&tqx=responseHandler:'+cb+'&cacheBust='+Date.now();script.onerror=function(){cleanup();reject(new Error('Sheet script failed'));};document.head.appendChild(script);});}
     function tableObjects(rows){var headers=(rows[0]||[]).map(function(h){return String(h).trim();});return rows.slice(1).filter(function(r){return r.some(Boolean);}).map(function(row){var obj={};headers.forEach(function(h,i){obj[h]=row[i]||'';});return obj;});}
     function firstSheetRows(names,range){var i=0;return new Promise(function(resolve){function next(){if(i>=names.length)return resolve([]);sheetRows(names[i++],range).then(resolve).catch(next);}next();});}
     function num(value){return Number(String(value||'').replace(/,/g,''))||0;}
@@ -284,15 +287,17 @@
       Promise.all([
         sheetRows('Campaign Phases','A4:H20'),
         sheetRows('Guild Lore','A4:O200'),
+        firstSheetRows(['Main Top 5','Main Page Top 5','Top 5','Leaderboard'],'A4:G20'),
         firstSheetRows(['Community Links','Links','HTML Data','Community','Official Links'],'A4:F80'),
         firstSheetRows(['Page Settings','Settings','HTML Data'],'A4:D80')
       ]).then(function(result){
-        var phases=tableObjects(result[0]),guilds=tableObjects(result[1]),links=tableObjects(result[2]),settings=tableObjects(result[3]);
-        if(phases.length){CONFIG.phases=phases.slice(0,3).map(function(p){return {id:p.phase_id,name:'P'+p.phase_id+' | '+p.date_range,phaseName:p.phase_name,status:String(p.status||'').toUpperCase()==='ACTIVE'?'ACTIVE':'NOT STARTED',desc:p.short_description||'Short Description',url:p.detail_page_url||p.main_page_url||'#'};});}
-        var approved=guilds.filter(function(g){return (g.guild_name||'') && String(g.status||'').toLowerCase()!=='hidden';}).sort(function(a,b){return num(b.final_score)-num(a.final_score);}).slice(0,5);
-        if(approved.length){CONFIG.guilds=approved.map(function(g){return {name:g.guild_name,logo:g.guild_logo_url,color:g.platform==='Cabal PC'?'#35d07f':'#5ab4ff',score:num(g.final_score)};});}
+        var phases=tableObjects(result[0]),guilds=tableObjects(result[1]),top5=tableObjects(result[2]),links=tableObjects(result[3]),settings=tableObjects(result[4]);
         function pick(row,names){for(var i=0;i<names.length;i++){var wanted=String(names[i]).toLowerCase().replace(/[^a-z0-9]/g,'');for(var key in row){if(String(key).toLowerCase().replace(/[^a-z0-9]/g,'')===wanted)return row[key];}}return '';}
-        var settingsUrl='';settings.forEach(function(s){var key=String(pick(s,['key','Key','name','Name','setting','Setting'])||'').toLowerCase().replace(/[^a-z0-9]/g,'');if(['linktreeurl','communitylink','communityurl','communitygroupurl','groupurl','allgroupsurl'].indexOf(key)>-1)settingsUrl=validUrl(pick(s,['value','Value','url','URL','link','Link']));});
+        if(phases.length){CONFIG.phases=phases.slice(0,3).map(function(p){return {id:p.phase_id,name:'P'+p.phase_id+' | '+p.date_range,phaseName:p.phase_name,status:String(p.status||'').toUpperCase()==='ACTIVE'?'ACTIVE':'NOT STARTED',desc:p.short_description||'Short Description',url:p.detail_page_url||p.main_page_url||'#'};});}
+        var helperRows=top5.filter(function(g){return pick(g,['guild_name','Guild Name','guild_title','Guild Title'])&&num(pick(g,['final_score','Final Score','score','Score']))>0;}).sort(function(a,b){var ar=num(pick(a,['rank','Rank'])),br=num(pick(b,['rank','Rank']));return (ar||999)-(br||999)||num(pick(b,['final_score','Final Score','score','Score']))-num(pick(a,['final_score','Final Score','score','Score']));}).slice(0,5);
+        var approved=helperRows.length?helperRows:guilds.filter(function(g){return pick(g,['guild_name','Guild Name']) && String(pick(g,['status','Status'])||'').toLowerCase()!=='hidden';}).sort(function(a,b){return num(pick(b,['final_score','Final Score','score','Score']))-num(pick(a,['final_score','Final Score','score','Score']));}).slice(0,5);
+        if(approved.length){CONFIG.guilds=approved.map(function(g){var platform=pick(g,['platform','Platform']);return {name:pick(g,['guild_name','Guild Name','guild_title','Guild Title']),logo:pick(g,['guild_logo_url','Guild Logo URL','logo','Logo']),color:platform==='Cabal PC'?'#35d07f':'#5ab4ff',score:num(pick(g,['final_score','Final Score','score','Score']))};});}
+        var settingsUrl='';settings.forEach(function(s){var key=String(pick(s,['key','Key','name','Name','setting','Setting'])||'').toLowerCase().replace(/[^a-z0-9]/g,'');if(['linktreeurl','linktree','communitylink','communityurl','communitygroupurl','groupurl','allgroupsurl','combinedcommunitylinks'].indexOf(key)>-1)settingsUrl=validUrl(pick(s,['value','Value','url','URL','link','Link']));});
         var linktree=links.find(function(l){var type=String(pick(l,['link_type','Link Type','type','Type','name','Name','label','Label','icon_hint','Icon Hint'])||'').toLowerCase();var status=String(pick(l,['status','Status'])||'').toLowerCase();return status!=='hidden'&&(type.indexOf('linktree')>-1||type.indexOf('community')>-1||type.indexOf('group')>-1||type.indexOf('all')>-1);})||links.find(function(l){return validUrl(pick(l,['url','URL','link','Link','link_url','Link URL','community_url','Community URL','value','Value']));});
         var communityUrl=settingsUrl||(linktree&&validUrl(pick(linktree,['url','URL','link','Link','link_url','Link URL','community_url','Community URL','value','Value'])));
         if(communityUrl)CONFIG.linktreeUrl=communityUrl;
@@ -301,6 +306,7 @@
     }
     renderHub();
     loadLiveData();
+    setInterval(loadLiveData,60000);
   </script>
 </body>
 </html>
