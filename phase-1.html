@@ -1109,6 +1109,16 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
   .lore-card .lore-text p{font-size:.98rem!important;line-height:1.44!important;}
 }
 </style>
+<style>
+/* === FINAL LORE TEXT PANEL OPACITY FIX 2026-07-10 === */
+.lore-card .lore-text{
+  background:rgba(4,5,22,.25)!important;
+  border-color:rgba(255,255,255,.10)!important;
+}
+.lore-card .lore-scroll::after{
+  background:linear-gradient(transparent,rgba(4,5,22,.28))!important;
+}
+</style>
 </body>
 </html>
 
