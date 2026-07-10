@@ -1042,6 +1042,73 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
   .lore-card .lore-text p{font-size:1.08rem!important;line-height:1.42!important;}
 }
 </style>
+<style>
+/* === FINAL LORE LOGO TITLE ALIGNMENT FIX 2026-07-10 === */
+.lore-card{
+  position:relative!important;
+  padding-top:188px!important;
+}
+.lore-card .guild-logo{
+  position:absolute!important;
+  top:70px!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:auto!important;
+  transform:translateX(-50%)!important;
+  width:106px!important;
+  height:106px!important;
+  min-width:106px!important;
+  min-height:106px!important;
+  margin:0!important;
+  z-index:4!important;
+}
+.lore-card .guild-name{
+  position:relative!important;
+  z-index:4!important;
+  width:100%!important;
+  max-width:100%!important;
+  margin:0 0 12px!important;
+  text-align:center!important;
+  align-self:center!important;
+  transform:none!important;
+  overflow-wrap:anywhere!important;
+  line-height:1.12!important;
+}
+.lore-card .lore-scroll{
+  position:relative!important;
+  z-index:3!important;
+  width:100%!important;
+  margin-top:0!important;
+}
+.lore-card .lore-text p{
+  font-size:1.08rem!important;
+  line-height:1.48!important;
+  font-weight:850!important;
+}
+@media(max-width:900px){
+  .lore-card{padding-top:172px!important;}
+  .lore-card .guild-logo{
+    top:62px!important;
+    width:94px!important;
+    height:94px!important;
+    min-width:94px!important;
+    min-height:94px!important;
+  }
+  .lore-card .lore-text p{font-size:1.02rem!important;line-height:1.46!important;}
+}
+@media(max-width:460px){
+  .lore-card{padding-top:158px!important;}
+  .lore-card .guild-logo{
+    top:54px!important;
+    width:86px!important;
+    height:86px!important;
+    min-width:86px!important;
+    min-height:86px!important;
+  }
+  .lore-card .guild-name{font-size:1.16rem!important;line-height:1.12!important;}
+  .lore-card .lore-text p{font-size:.98rem!important;line-height:1.44!important;}
+}
+</style>
 </body>
 </html>
 
