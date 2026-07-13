@@ -470,7 +470,7 @@ body::after{background:
 </head>
 <body>
   <nav id="site-nav" aria-label="Campaign navigation">
-    <div class="nav-brand" aria-label="CABAL PRIDE brand"><a class="nav-brand-logo" href="index.html" aria-label="CABAL PRIDE home"><img src="cabal-pride-logo.png" alt="CABAL PRIDE"></a><a class="combo-nav-logo" href="https://combocabalm.com/sea/" target="_blank" rel="noopener" aria-label="Open Combo Interactive official website"><img src="Combo-Logo-Horizontal-White.png" alt="Combo Interactive"></a></div>
+    <div class="nav-brand" aria-label="CABAL PRIDE brand"><a class="nav-brand-logo" href="index.html" aria-label="CABAL PRIDE home"><img src="cabal-pride-logo.png" alt="CABAL PRIDE"></a><span class="combo-nav-logo" aria-label="Combo Interactive"><img src="Combo-Logo-Horizontal-White.png" alt="Combo Interactive"></span></div>
     <div class="phase-header-links" aria-label="Campaign phases">
       <a href="phase-1.html" aria-current="true">Guild Pride</a>
       <a href="phase-2.html">Dungeon Pride</a>
@@ -2844,6 +2844,27 @@ body{
 .community-copy .official-logo-map,.ci-foot .official-logo-map{width:min(920px,96vw)!important;}
 @media (max-width:640px){.official-logo-map{width:96vw}.official-hotspot{border-radius:6px}}
 </style>
+
+<!-- === V22 MAJOR REVISION: manual score mode === -->
+<style id="v22-manual-score-mode">
+  .combo-nav-logo{cursor:default!important;pointer-events:none!important;}
+  .official-floating-btn{position:fixed;left:18px;bottom:18px;z-index:9999;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:11px 16px;border-radius:999px;border:1px solid rgba(240,208,96,.55);background:linear-gradient(180deg,rgba(18,18,46,.94),rgba(5,5,18,.96));color:#fff7c7!important;font-family:'Exo 2',sans-serif;font-weight:1000;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;box-shadow:0 14px 34px rgba(0,0,0,.48),0 0 20px rgba(240,208,96,.18);backdrop-filter:blur(10px);}
+  .official-floating-btn::before{content:"";width:22px;height:22px;border-radius:50%;background:radial-gradient(circle,#f7df70 0 35%,rgba(240,208,96,.18) 38% 100%);box-shadow:0 0 18px rgba(240,208,96,.38);}
+  .official-floating-btn:hover,.official-floating-btn:focus-visible{transform:translateY(-2px);border-color:#f0d060;outline:none;}
+  @media(max-width:760px){.official-floating-btn{left:12px;bottom:12px;min-height:44px;padding:10px 13px;font-size:.68rem}}
+</style>
+<script id="v22-manual-score-mode-script">
+(function(){
+  var OFFICIAL_URL='https://combocabalm.com/sea/';
+  document.querySelectorAll('.combo-nav-logo').forEach(function(el){el.removeAttribute('href');el.removeAttribute('target');el.removeAttribute('rel');el.setAttribute('aria-label','Combo Interactive');});
+  if(window.CONFIG&&CONFIG.phases&&CONFIG.phases[0])CONFIG.phases[0].desc='Guild lore performance updated manually from the official sheet.';
+  if(!document.querySelector('.official-floating-btn')){
+    document.body.insertAdjacentHTML('beforeend','<a class="official-floating-btn" href="'+OFFICIAL_URL+'" target="_blank" rel="noopener" aria-label="Open official CABAL website">Official Website</a>');
+  }
+  if(typeof renderHub==='function')renderHub();
+})();
+</script>
 </body>
 </html>
+
 
