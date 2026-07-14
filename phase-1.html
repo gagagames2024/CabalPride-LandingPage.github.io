@@ -1243,6 +1243,99 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
   if(typeof renderSubmissions==='function')renderSubmissions();
 })();
 </script>
+
+<!-- === V23 SUBMISSION ROW ALIGNMENT FIX === -->
+<style id="v23-submission-row-alignment">
+  .submission-row{
+    grid-template-columns:minmax(285px,1.35fr) minmax(220px,.95fr) minmax(150px,.62fr) minmax(150px,.62fr) minmax(128px,.55fr) 34px!important;
+    gap:18px!important;
+    align-items:center!important;
+  }
+  .submission-row>div{min-width:0!important;max-width:100%!important;}
+  .submission-guild{display:grid!important;grid-template-columns:64px minmax(0,1fr)!important;gap:14px!important;align-items:center!important;}
+  .submission-logo,.guild-logo{overflow:hidden!important;background:rgba(3,3,18,.55)!important;}
+  .submission-logo{width:58px!important;height:58px!important;min-width:58px!important;min-height:58px!important;padding:3px!important;}
+  .submission-logo img,.guild-logo img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;border-radius:50%;}
+  .submission-logo:not(.placeholder) .logo-placeholder,.guild-logo:not(.placeholder) .logo-placeholder{display:none!important;}
+  .submission-name,.submission-meta,.submission-score{min-width:0!important;overflow-wrap:anywhere!important;}
+  .submission-label{display:block!important;white-space:nowrap!important;margin-bottom:6px!important;}
+  .submission-pill{max-width:100%!important;min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;padding-inline:10px!important;}
+  .submission-pill .pf-icon,.submission-pill .flag{display:none!important;}
+  .submission-score{white-space:nowrap!important;}
+  @media(max-width:1120px){
+    .submission-row{grid-template-columns:minmax(245px,1.2fr) minmax(185px,.9fr) minmax(130px,.58fr) minmax(130px,.58fr) minmax(112px,.52fr) 32px!important;gap:12px!important;}
+    .submission-guild{grid-template-columns:58px minmax(0,1fr)!important;gap:12px!important;}
+    .submission-logo{width:52px!important;height:52px!important;min-width:52px!important;min-height:52px!important;}
+  }
+  @media(max-width:860px){
+    .submission-row{grid-template-columns:1fr!important;gap:12px!important;align-items:start!important;padding:18px!important;}
+    .submission-guild{grid-template-columns:58px minmax(0,1fr)!important;}
+    .submission-row::after{justify-self:start!important;}
+    .submission-pill{width:max-content!important;max-width:100%!important;}
+    .submission-score{white-space:normal!important;}
+  }
+</style>
+<script id="v23-submission-row-alignment-script">
+(function(){
+  function cleanRegionText(g){
+    var code = (typeof guildRegion === 'function' ? guildRegion(g) : safe(g.region, '')) || '';
+    return (typeof regionName === 'function' ? regionName(code) : code) || 'Region TBD';
+  }
+  function cleanPlatformText(g){
+    return (typeof platformLabel === 'function' ? platformLabel(g.platform) : safe(g.platform, 'Platform TBD')) || 'Platform TBD';
+  }
+  window.platformIcon = function(){ return ''; };
+  window.flagMark = function(){ return ''; };
+  var previousLogoMark = window.logoMark;
+  window.logoMark = function(g, cls){
+    var logo = safe(g && g.logo, '').trim();
+    var name = safe(g && g.name, 'Guild');
+    if(logo){
+      return '<div class="'+cls+'"><img src="'+logo+'" alt="'+name+' logo" loading="lazy" onerror="this.parentNode.classList.add(\'placeholder\');this.remove();"><span class="logo-placeholder">Guild<br>Logo<br>Placeholder</span></div>';
+    }
+    return previousLogoMark ? previousLogoMark(g, cls) : '<div class="'+cls+' placeholder"><span class="logo-placeholder">Guild<br>Logo<br>Placeholder</span></div>';
+  };
+  window.renderSubmissions = function(){
+    var search = document.getElementById('submission-search');
+    var q = (search && search.value || '').trim().toLowerCase();
+    var rows = (CONFIG.guilds || []).filter(function(g){
+      var first = safe(g.name, '').charAt(0).toUpperCase();
+      return (region === 'All' || guildRegion(g) === region) &&
+        (letter === 'All' || first === letter) &&
+        [safe(g.name,''), safe(g.leader,''), safe(g.platform,''), safe(g.lore,''), guildRegion(g), cleanRegionText(g)].join(' ').toLowerCase().includes(q);
+    });
+    if(sortMode === 'az') rows.sort(function(a,b){ return safe(a.name,'').localeCompare(safe(b.name,'')); });
+    else rows.sort(function(a,b){ return num(b.score) - num(a.score); });
+    var list = document.getElementById('submission-list');
+    if(!list) return;
+    list.innerHTML = rows.length ? rows.map(function(g){
+      var lore = safe(g.lore, 'Guild lore placeholder. The submitted story will appear here when this guild data is available.').split('\n\n').map(function(p){ return '<p>'+p+'</p>'; }).join('');
+      var pLabel = cleanPlatformText(g);
+      var pClass = (typeof platformClass === 'function' ? platformClass(g.platform) : '');
+      var guildName = safe(g.name, 'Guild Title Placeholder');
+      var entryClass = String(g.platform || '').toLowerCase().includes('pc') ? 'is-pc' : 'is-mobile';
+      return '<details class="submission-entry '+entryClass+'" style="'+categoryStyle(g)+'">'+
+        '<summary class="submission-row">'+
+          '<div class="submission-guild">'+logoMark(g,'submission-logo')+'<div><div class="submission-name">'+guildName+'</div></div></div>'+
+          '<div class="submission-meta"><span class="submission-label">Guild Leader</span>'+safe(g.leader,'Leader Name Placeholder')+'</div>'+
+          '<div><span class="submission-label">Region</span><span class="submission-pill">'+cleanRegionText(g)+'</span></div>'+
+          '<div><span class="submission-label">Platform</span><span class="submission-pill '+pClass+'">'+pLabel+'</span></div>'+
+          '<div class="submission-score"><span class="submission-label">Final Score</span>'+scoreText(g.score)+'</div>'+
+        '</summary>'+
+        '<div class="submission-lore"><div class="submission-lore-inner">'+lore+'<div class="submission-social">'+socialButton(g,'View Guild Post')+'</div></div></div>'+
+      '</details>';
+    }).join('') : '<div class="empty">No guild lore submissions found.</div>';
+  };
+  if(typeof renderLore === 'function') renderLore();
+  if(typeof renderSubmissions === 'function') renderSubmissions();
+  var search = document.getElementById('submission-search');
+  if(search) search.addEventListener('input', function(){ setTimeout(renderSubmissions, 0); });
+  document.querySelectorAll('[data-region], #letter-filter').forEach(function(el){
+    el.addEventListener('change', function(){ setTimeout(renderSubmissions, 0); });
+    el.addEventListener('click', function(){ setTimeout(renderSubmissions, 0); });
+  });
+})();
+</script>
 </body>
 </html>
 
